@@ -1,0 +1,43 @@
+/* shape */
+.icon.round {
+  border-radius: 1vh;
+}
+
+.icon.square {
+  border-radius: 0;
+}
+.icon.square.rounded {
+  border-radius: calc(height * 0.05);
+}
+
+/* sizes */
+.icon.lg {
+  height: 100px;
+  width: 100px;
+}
+.icon.med {
+  height: 70px;
+  width: 70px;
+}
+.icon.sm {
+  height: 40px;
+  width: 40px;
+}
+.icon.xs {
+  height: 20px;
+  width: 20px;
+}
+
+/* hover and theme */
+a .icon:hover,
+.clickable-icons .icon:hover {
+  filter: invert(0.5);
+}
+
+.icon.dark {
+  filter: invert(0.5);
+}
+a .icon.dark:hover,
+.clickable-icons .icon.dark:hover {
+  filter: invert(0.9);
+}

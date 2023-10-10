@@ -2,10 +2,19 @@
   text-align: center;
 }
 
-.home-wrapper {
+/* page/content-related classes */
+.page-wrapper {
   width: 70%;
   min-width: 500px;
   max-width: 800px;
   margin: auto;
-  background: red;
+}
+.page-title {
+  font-weight: 500;
+  font-size: 4.2em;
+}
+.section-title {
+  font-weight: 500;
+  font-size: 2em;
+  margin-bottom: 1rem;
 }

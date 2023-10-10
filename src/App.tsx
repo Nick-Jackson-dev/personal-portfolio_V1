@@ -5,12 +5,12 @@ import MainNavbar from "./components/MainNavbar"
 
 //pages
 import Home from "./pages/Home"
-
-//styles
-import "./App.css"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
 import { ProjectsPage } from "./pages/Projects/index"
+
+//styles
+import "./App.css"
 
 function App() {
   return (
