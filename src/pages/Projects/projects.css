@@ -14,9 +14,12 @@
   object-fit: cover;
   display: block;
   width: 50%;
-  height: 100%;
+  aspect-ratio: 16/9;
   align-self: center;
   text-align: center;
+}
+.project-list-item .thumbnail img {
+  aspect-ratio: 16/9;
 }
 
 .project-list-item .project-details {

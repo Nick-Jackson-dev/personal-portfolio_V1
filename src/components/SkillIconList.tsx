@@ -1,5 +1,8 @@
 import Icon from "./basicComponents/Icon"
 
+//imported types
+import { Skill, allSkills } from "../data/projects"
+
 //icons
 //icons
 import {
@@ -16,56 +19,49 @@ import {
 //styles
 import "./IconList.css"
 
-type SkillIconListProps = {
-  className?: string
+const iconPaths = {
+  React: reactIcon,
+  Vue: vuejsIcon,
+  Bootstrap: bootstrapIcon,
+  JS: jsIcon,
+  TS: tsIcon,
+  Firebase: firebaseIcon,
+  Git: gitIcon,
+  Github: githubIcon,
+} as const
+
+interface ISkillObj {
+  name: Skill
+  iconPath: string
 }
 
-//TODO: Want the skills included to be dynamic so that the component can be used in Projects as well.
+type SkillIconListProps = {
+  className?: string
+  skills?: Skill[]
+  iconSize?: "xs" | "sm" | "med" | "lg"
+  showLabels?: boolean
+}
 
-export default function SkillIconList({ className }: SkillIconListProps) {
+export default function SkillIconList({
+  className,
+  skills = allSkills,
+  iconSize = "sm",
+  showLabels = false,
+}: SkillIconListProps) {
+  const skillsInList: ISkillObj[] = skills.map((s: Skill): ISkillObj => {
+    return { name: s, iconPath: iconPaths[`${s}`] }
+  })
+
   return (
     <section className={`icon-list-container ${className}`}>
       <h2 className="icon-list-title">My Skill Tree</h2>
       <div className="icon-list">
-        <div className="icon-list-item">
-          <Icon src={reactIcon} alt="React" size="med" />
-          <p>React</p>
-        </div>
-
-        <div className="icon-list-item">
-          <Icon src={vuejsIcon} alt="VueJS" size="med" />
-          <p>VueJS</p>
-        </div>
-
-        <div className="icon-list-item">
-          <Icon src={jsIcon} alt="Javascript" size="med" />
-          <p>Javascript</p>
-        </div>
-
-        <div className="icon-list-item">
-          <Icon src={tsIcon} alt="TypeScript" size="med" />
-          <p>Typescript</p>
-        </div>
-
-        <div className="icon-list-item">
-          <Icon src={bootstrapIcon} alt="Bootstrap" size="med" />
-          <p>Bootstrap</p>
-        </div>
-
-        <div className="icon-list-item">
-          <Icon src={gitIcon} alt="Git" size="med" />
-          <p>Git</p>
-        </div>
-
-        <div className="icon-list-item">
-          <Icon src={githubIcon} alt="Github" size="med" />
-          <p>Github</p>
-        </div>
-
-        <div className="icon-list-item">
-          <Icon src={firebaseIcon} alt="Firebase" size="med" />
-          <p>Firebase</p>
-        </div>
+        {skillsInList.map((skill) => (
+          <div className="icon-list-item">
+            <Icon src={skill.iconPath} alt={skill.name} size={iconSize} />
+            {showLabels && <p>{skill.name}</p>}
+          </div>
+        ))}
       </div>
     </section>
   )
