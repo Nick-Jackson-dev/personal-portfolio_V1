@@ -28,6 +28,7 @@ const iconPaths = {
   Firebase: firebaseIcon,
   Git: gitIcon,
   Github: githubIcon,
+  All: reactIcon, //I need this hear but don't know why
 } as const
 
 interface ISkillObj {
@@ -40,6 +41,7 @@ type SkillIconListProps = {
   skills?: Skill[]
   iconSize?: "xs" | "sm" | "med" | "lg"
   showLabels?: boolean
+  title?: string
 }
 
 export default function SkillIconList({
@@ -47,6 +49,7 @@ export default function SkillIconList({
   skills = allSkills,
   iconSize = "sm",
   showLabels = false,
+  title = "My Skill Tree",
 }: SkillIconListProps) {
   const skillsInList: ISkillObj[] = skills.map((s: Skill): ISkillObj => {
     return { name: s, iconPath: iconPaths[`${s}`] }
@@ -54,7 +57,7 @@ export default function SkillIconList({
 
   return (
     <section className={`icon-list-container ${className}`}>
-      <h2 className="icon-list-title">My Skill Tree</h2>
+      {title && <h2 className="icon-list-title">{title}</h2>}
       <div className="icon-list">
         {skillsInList.map((skill) => (
           <div className="icon-list-item">

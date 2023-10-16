@@ -1,30 +1,68 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
 // layouts
 import SingleColumn from "../../layouts/SingleColumn"
 import SkillIconList from "../../components/SkillIconList"
 
 //data
-import { projects } from "../../data/projects"
+import { projects, IProject, Skill } from "../../data/projects"
 
 //styles
 import "./projects.css"
+import ListFilter from "../../components/basicComponents/ListFilter"
 
 export default function ProjectsPage() {
+  const [filteredProjects, setFilteredProjects] = useState<IProject[]>(projects)
+
+  const [searchParams, setSearchParams] = useSearchParams({ skill: "" })
+  const currentSkill: Skill = (searchParams.get("skill") as Skill) || "All"
+
+  const changeFilter = (filter: string) => {
+    setSearchParams(
+      (prev) => {
+        prev.set("skill", filter)
+        return prev
+      },
+      { replace: true }
+    )
+  }
+
+  useEffect(() => {
+    let displayedProjects: IProject[] = projects.filter((project) => {
+      if (currentSkill !== "All") {
+        return project.skills.includes(currentSkill)
+      }
+      return projects
+    })
+    setFilteredProjects(displayedProjects)
+  }, [currentSkill])
+
   return (
     <main className="projects-page">
       <SingleColumn className="page-wrapper">
         <article>
           <header className="section-title">My Projects</header>
           <div className="filter">
-            filter by: I am going to have a compnent for this
+            <ListFilter
+              changeFilter={changeFilter}
+              filterOptions={[
+                "All",
+                "React",
+                "Typescript",
+                "Javascript",
+                "Bootstrap",
+                "Firebase",
+                "Vue",
+                "Git",
+                "Github",
+              ]}
+              currentFilter={currentSkill}
+            />
           </div>
 
           <section className="project-list">
-            {/* TODO: have list of projects in json and output here using ProjectListItem component. */}
-
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <div className="project-list-item">
                 <div className="thumbnail">
                   <img
@@ -39,65 +77,34 @@ export default function ProjectsPage() {
                     skills={project.skills}
                     iconSize="xs"
                     showLabels={false}
+                    title=""
+                    className="project-skills"
                   />
                   <div className="project-description">
-                    <p>sdhjfbsdf</p>
-                    <p>
-                      ksjdhbfksjdbfskjbf sdjklfb nsdjkfb sdjkfb sdkf bsdf kbjsd
-                    </p>
+                    {project.shortDescription.map((p) => (
+                      <p>{p}</p>
+                    ))}
                   </div>
                 </div>
               </div>
             ))}
-
-            <div className="project-list-item">
-              <div className="thumbnail">Image here</div>
-
-              <div className="project-details">
-                <h3 className="project-title">Document Storage</h3>
-                <div className="project-skills">list here</div>
-                <div className="project-description">
-                  <p>sdhjfbsdf</p>
-                  <p>
-                    ksjdhbfksjdbfskjbf sdjklfb nsdjkfb sdjkfb sdkf bsdf kbjsd
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-list-item">
-              <div className="thumbnail">Image here</div>
-
-              <div className="project-details">
-                <h3 className="project-title">Document Storage</h3>
-                <div className="project-skills">list here</div>
-                <div className="project-description">
-                  <p>sdhjfbsdf</p>
-                  <p>
-                    ksjdhbfksjdbfskjbf sdjklfb nsdjkfb sdjkfb sdkf bsdf kbjsd
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-list-item">
-              <div className="thumbnail">Image here</div>
-
-              <div className="project-details">
-                <h3 className="project-title">Document Storage</h3>
-                <div className="project-skills">list here</div>
-                <div className="project-description">
-                  <p>sdhjfbsdf</p>
-                  <p>
-                    ksjdhbfksjdbfskjbf sdjklfb nsdjkfb sdjkfb sdkf bsdf kbjsd
-                  </p>
-                </div>
-              </div>
-            </div>
           </section>
         </article>
         <SkillIconList />
       </SingleColumn>
     </main>
   )
+}
+
+function getType(type: string) {
+  switch (type) {
+    case "all":
+      return ""
+    case "Typescript":
+      return "TS"
+    case "Javascript":
+      return "JS"
+    default:
+      return type
+  }
 }

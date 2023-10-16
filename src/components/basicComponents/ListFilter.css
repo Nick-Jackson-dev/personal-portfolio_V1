@@ -1,0 +1,30 @@
+.list-filter {
+  margin: auto;
+}
+.list-filter nav {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.list-filter p {
+  font-size: 0.9em;
+  margin-right: 10px;
+}
+.list-filter button {
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  font-weight: bold;
+  color: rgb(115, 151, 163);
+  cursor: pointer;
+  border-right: 1px solid #e4e4e4;
+  font-size: 0.9em;
+}
+.list-filter button:last-child {
+  border: 0;
+}
+.list-filter button.active {
+  color: var(--primary-color);
+}

@@ -1,10 +1,19 @@
-.project-list-item:first-of-type {
-  margin-top: 1em;
+.project-list-item {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-radius: 20px;
+  box-shadow: 2px 3px 4px 1px;
+  overflow: hidden;
 }
 .project-list-item {
   display: flex;
   box-sizing: border-box;
   flex-direction: row;
+}
+.project-list-item:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0px 0px 4px 1px;
 }
 .project-list-item:nth-child(2) {
   flex-direction: row-reverse;
@@ -14,9 +23,9 @@
   object-fit: cover;
   display: block;
   width: 50%;
-  aspect-ratio: 16/9;
   align-self: center;
   text-align: center;
+  /* background: rgba(0, 0, 0, 0.1); */
 }
 .project-list-item .thumbnail img {
   aspect-ratio: 16/9;
@@ -24,35 +33,30 @@
 
 .project-list-item .project-details {
   width: 50%;
-  border-left: 1px solid darkgrey;
 }
 .project-list-item:nth-child(2) .project-details {
   flex-direction: row-reverse;
   padding-left: 0;
   border-left: none;
-  border-right: 1px solid darkgrey;
 }
 
 .project-list-item .project-title {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.25rem 0;
   font-size: 1.4em;
 }
 .project-list-item .project-skills {
-  height: 30px;
+  height: 25px;
   text-align: left;
-  /* width: 100%; */
   border-bottom: 1px solid darkgrey;
+  border-top: none;
   padding-inline: 1em;
 }
 .project-list-item .project-description {
   margin: 0;
   text-align: left;
   padding-inline: 1em;
-  border-bottom: 2px solid darkgrey;
 }
-.project-list-item:last-of-type .project-description {
-  border-bottom: none;
-}
+
 .project-list-item .project-description p {
   margin-top: 0.5rem;
 }
