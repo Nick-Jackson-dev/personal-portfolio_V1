@@ -1,4 +1,3 @@
-import { Skill } from "../../data/projects"
 import "./ListFilter.css"
 
 type Filter = string

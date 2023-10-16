@@ -62,8 +62,10 @@ export default function ProjectsPage() {
           </div>
 
           <section className="project-list">
-            {filteredProjects.map((project) => (
-              <div className="project-list-item">
+            {filteredProjects.map((project, i: number) => (
+              <div
+                className={`project-list-item ${i % 2 !== 0 ? "reverse" : ""}`}
+              >
                 <div className="thumbnail">
                   <img
                     src={project.thumbnail}
