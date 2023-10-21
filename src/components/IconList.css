@@ -1,0 +1,51 @@
+.icon-list-container {
+  text-align: start;
+  margin-top: 1rem;
+  border-top: 2px darkgrey solid;
+}
+
+.icon-list-title {
+  font-weight: 500;
+  font-size: 1.3em;
+}
+
+.icon-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.icon-list-item {
+  text-align: center;
+  margin-right: 1em;
+}
+
+.icon-list-item p {
+  margin-top: 0.3rem;
+  font-size: 0.9em;
+}
+
+/* if the iconlist is a stick-to-left class*/
+
+.icon-list-container.stick-to-left {
+  position: fixed;
+  top: 15vh;
+  width: 40px;
+  border-top: 3px solid darkgray;
+  border-bottom: 3px solid darkgray;
+  border-right: 3px solid darkgray;
+  border-radius: 0px 10px 10px 0;
+  padding: 3px 5px 3px 5px;
+}
+.stick-to-left .icon-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.stick-to-left .icon-list-item {
+  margin-top: 0.75rem;
+}
+.stick-to-left .icon-list-item:last-of-type {
+  margin-bottom: 0.75rem;
+}

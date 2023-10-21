@@ -1,0 +1,79 @@
+.project-list-item {
+  box-sizing: border-box;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-radius: 20px;
+  box-shadow: 2px 3px 4px 1px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+.project-list-item.reverse {
+  flex-direction: row-reverse;
+}
+.project-list-item:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0px 0px 4px 1px;
+}
+
+.project-list-item .thumbnail {
+  object-fit: cover;
+  display: block;
+  width: 50%;
+  align-self: center;
+  text-align: center;
+}
+.project-list-item .thumbnail img {
+  aspect-ratio: 16/9;
+}
+
+.project-list-item .project-details {
+  width: 50%;
+}
+.project-list-item.reverse .project-details {
+  padding-left: 0;
+  border-left: none;
+}
+
+.project-list-item .project-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.4em;
+}
+.project-list-item .project-skills {
+  height: 25px;
+  text-align: left;
+  border-bottom: 1px solid darkgrey;
+  border-top: none;
+  padding-inline: 1em;
+}
+.project-list-item .project-description {
+  margin: 0;
+  text-align: left;
+  padding-inline: 1em;
+}
+
+.project-list-item .project-description p {
+  margin-top: 0.5rem;
+}
+
+@media only screen and (max-width: 860px) {
+  .project-list-item,
+  .project-list-item.reverse {
+    flex-direction: column;
+  }
+  .project-list-item .project-details {
+    width: 100%;
+    text-align: left;
+  }
+  .project-list-item .thumbnail {
+    width: 100%;
+    border-bottom: solid lightgray 1px;
+  }
+  .project-list-item .thumbnail img {
+    aspect-ratio: 9/3;
+  }
+  .project-list-item .project-skills {
+    border-bottom: none;
+  }
+}
