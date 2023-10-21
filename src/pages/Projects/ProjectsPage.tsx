@@ -21,7 +21,7 @@ export default function ProjectsPage() {
   const changeFilter = (filter: string) => {
     setSearchParams(
       (prev) => {
-        prev.set("skill", filter)
+        prev.set("skill", getType(filter))
         return prev
       },
       { replace: true }
