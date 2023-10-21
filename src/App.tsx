@@ -7,7 +7,7 @@ import MainNavbar from "./components/MainNavbar"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
-import { ProjectsPage } from "./pages/Projects/index"
+import { ProjectsPage, ProjectPage } from "./pages/Projects/index"
 
 //styles
 import "./App.css"
@@ -22,6 +22,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:projectName" element={<ProjectPage />} />
         </Routes>
       </BrowserRouter>
     </div>
