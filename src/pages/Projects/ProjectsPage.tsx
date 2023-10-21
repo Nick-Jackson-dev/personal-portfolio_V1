@@ -64,7 +64,9 @@ export default function ProjectsPage() {
           <section className="project-list">
             {filteredProjects.map((project, i: number) => (
               <div
+                tabIndex={0}
                 className={`project-list-item ${i % 2 !== 0 ? "reverse" : ""}`}
+                key={project.id}
               >
                 <div className="thumbnail">
                   <img
