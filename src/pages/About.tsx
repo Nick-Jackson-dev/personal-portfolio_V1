@@ -2,9 +2,11 @@ import { useRef, useState } from "react"
 
 //components
 import SocialIconList from "../components/SocialIconList"
+import SkillIconList from "../components/SkillIconList"
+
+//layout
 import TwoColumn from "../layouts/TwoColumn"
 import SingleColumn from "../layouts/SingleColumn"
-import SkillIconList from "../components/SkillIconList"
 
 //hooks
 import useWindowSize from "../hooks/useWindowSize"

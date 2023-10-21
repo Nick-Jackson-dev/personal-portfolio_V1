@@ -1,3 +1,4 @@
+import { CSSProperties } from "react"
 import Icon from "./basicComponents/Icon"
 
 //icons
@@ -12,20 +13,24 @@ import "./IconList.css"
 
 type SocialIconListProps = {
   className?: string
+  styles?: CSSProperties
   stickToLeft?: boolean
+  showTitle?: boolean
 }
 
 export default function SocialIconList({
   className = "",
+  styles,
   stickToLeft = false,
+  showTitle = true,
 }: SocialIconListProps) {
   const allClasses: string = stickToLeft
     ? `stick-to-left ${className}`
     : className
 
   return (
-    <section className={`icon-list-container ${allClasses} `}>
-      {!stickToLeft && (
+    <section className={`icon-list-container ${allClasses} `} style={styles}>
+      {!stickToLeft && showTitle && (
         <h2 className="icon-list-title">Check Me Out on Social</h2>
       )}
       <div className="icon-list">

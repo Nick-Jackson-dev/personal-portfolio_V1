@@ -3,6 +3,10 @@
   border-radius: 1vh;
 }
 
+.icon.clickable {
+  cursor: pointer;
+}
+
 .icon.square {
   border-radius: 0;
 }
