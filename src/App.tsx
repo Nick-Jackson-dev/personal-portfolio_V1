@@ -11,6 +11,7 @@ import { ProjectsPage, ProjectPage } from "./pages/Projects/index"
 
 //styles
 import "./App.css"
+import RedirectPage from "./pages/RedirectPage"
 
 function App() {
   return (
@@ -22,7 +23,15 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/projects/:projectName" element={<ProjectPage />} />
+          <Route path="/projects/:projectId" element={<ProjectPage />} />
+          <Route
+            path="*"
+            element={
+              <RedirectPage to="/">
+                <p>This page doesn't exist, you will be sent back to home.</p>
+              </RedirectPage>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

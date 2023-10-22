@@ -13,6 +13,7 @@ import "./projects.css"
 import ListFilter from "../../components/basicComponents/ListFilter"
 
 export default function ProjectsPage() {
+  const navigate = useNavigate()
   const [filteredProjects, setFilteredProjects] = useState<IProject[]>(projects)
 
   const [searchParams, setSearchParams] = useSearchParams({ skill: "" })
@@ -67,6 +68,7 @@ export default function ProjectsPage() {
                 tabIndex={0}
                 className={`project-list-item ${i % 2 !== 0 ? "reverse" : ""}`}
                 key={project.id}
+                onClick={() => navigate(`${project.id}`)}
               >
                 <div className="thumbnail">
                   <img

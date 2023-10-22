@@ -25,7 +25,7 @@ const allSkills: Skill[] = [
 
 interface IProject {
   name: string
-  id: number | string
+  id: string
   skills: Skill[]
   shortDescription: string[]
   description: string[]
@@ -52,8 +52,8 @@ const projects: IProject[] = [
     screenshots: [reactIcon],
   },
   {
-    name: "Document Storage",
-    id: 2,
+    name: "B2B software",
+    id: "2",
     skills: ["TS", "Bootstrap"],
     shortDescription: [
       "this is a short, 2 paragraph descriptionhis is a short, 2 paragraph descriptionhis is a short, 2 paragraph descriptionhis is a short, 2 paragraph description",
