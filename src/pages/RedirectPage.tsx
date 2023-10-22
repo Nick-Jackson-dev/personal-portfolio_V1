@@ -3,11 +3,11 @@ import useTimeout from "../hooks/useTimeout"
 import { PropsWithChildren, useState } from "react"
 
 type RedirectPageProps = {
-  to: string
+  to?: string
 }
 
 export default function RedirectPage({
-  to,
+  to = "/",
   children,
 }: PropsWithChildren<RedirectPageProps>) {
   const [count, setCount] = useState(5)
