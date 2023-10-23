@@ -1,23 +1,100 @@
 import { useNavigate, useParams } from "react-router"
-import { projects } from "../../data/projects"
-import useTimeout from "../../hooks/useTimeout"
-import { useState } from "react"
+import { Link } from "react-router-dom"
+
 import RedirectPage from "../RedirectPage"
+import SingleColumn from "../../layouts/SingleColumn"
+import { Skill, projects } from "../../data/projects"
+import ImageSlider from "../../components/ImageSlider"
+import SkillIconList from "../../components/SkillIconList"
 
 export default function ProjectPage() {
   const navigate = useNavigate()
   const { projectId } = useParams()
-  const thisProject = projects.filter((proj) => proj.id === projectId)[0]
+  const project = projects.filter((proj) => proj.id === projectId)[0]
 
-  //   this should be a redirect
-  if (typeof thisProject === "undefined") {
-    return <RedirectPage to="/projects" />
+  //   redirect the user if the project doesn't exist
+  if (typeof project === "undefined") {
+    return (
+      <RedirectPage to="/projects">
+        <p className="error">This project doesn't exist.</p>
+      </RedirectPage>
+    )
   }
 
   return (
-    <div>
-      {projectId}
-      <p>{thisProject.name}</p>
-    </div>
+    <main className="project-page">
+      <h1 className="page-title">{project.name}</h1>
+      <SingleColumn textAlign="left" className="page-wrapper">
+        <p className="project-page-back-button">
+          <Link to="/projects">{"<"} back to projects</Link>
+        </p>
+
+        {/* slideshow */}
+        <ImageSlider images={project.screenshots} />
+
+        <div className="project-information">
+          <ProjectDescription description={project.description} />
+          <SkillsAndLink
+            skills={project.skills}
+            githubLink={project.githubLink}
+            liveLink={project.liveLink}
+          />
+        </div>
+      </SingleColumn>
+    </main>
+  )
+}
+
+type ProjectDescriptionProps = {
+  description: string[]
+}
+const ProjectDescription = ({ description }: ProjectDescriptionProps) => {
+  return (
+    <section className="project-description">
+      <h2>What is it?</h2>
+      {description.map((para) => (
+        <p key={para}>{para}</p>
+      ))}
+    </section>
+  )
+}
+
+type SkillsAndLinkProps = {
+  skills: Skill[]
+  githubLink?: string
+  liveLink?: string
+}
+
+const SkillsAndLink = ({
+  skills,
+  githubLink = "",
+  liveLink = "",
+}: SkillsAndLinkProps) => {
+  return (
+    <section className="skills-and-links">
+      <div className="project-skills">
+        <SkillIconList
+          showLabels={true}
+          skills={skills}
+          title="Skills Used"
+          border={false}
+        />
+      </div>
+      <div className="project-links">
+        {githubLink && (
+          <p>
+            View on{" "}
+            <a href={githubLink} target="_blank">
+              GitHub
+            </a>
+          </p>
+        )}
+        {liveLink && (
+          <p>
+            Check out the project <a href={liveLink}>live</a>
+          </p>
+        )}
+      </div>
+    </section>
   )
 }

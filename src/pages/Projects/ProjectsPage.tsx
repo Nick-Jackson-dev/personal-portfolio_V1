@@ -72,8 +72,8 @@ export default function ProjectsPage() {
               >
                 <div className="thumbnail">
                   <img
-                    src={project.thumbnail}
-                    alt={`${project.name} project screenshot`}
+                    src={project.thumbnail.url}
+                    alt={project.thumbnail.alt}
                   />
                 </div>
 

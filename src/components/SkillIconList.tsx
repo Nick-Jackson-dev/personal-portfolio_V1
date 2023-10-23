@@ -42,6 +42,7 @@ type SkillIconListProps = {
   iconSize?: "xs" | "sm" | "med" | "lg"
   showLabels?: boolean
   title?: string
+  border?: boolean
 }
 
 export default function SkillIconList({
@@ -50,13 +51,18 @@ export default function SkillIconList({
   iconSize = "sm",
   showLabels = false,
   title = "My Skill Tree",
+  border = true,
 }: SkillIconListProps) {
   const skillsInList: ISkillObj[] = skills.map((s: Skill): ISkillObj => {
     return { name: s, iconPath: iconPaths[`${s}`] }
   })
 
   return (
-    <section className={`icon-list-container ${className}`}>
+    <section
+      className={`icon-list-container ${
+        !border ? "no-border" : ""
+      } ${className}`}
+    >
       {title && <h2 className="icon-list-title">{title}</h2>}
       <div className="icon-list">
         {skillsInList.map((skill) => (

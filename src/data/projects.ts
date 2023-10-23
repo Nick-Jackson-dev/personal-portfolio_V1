@@ -1,5 +1,8 @@
 //screenshots
 import { reactIcon } from "../assets/skillIcons"
+import testProject1 from "../assets/projects/test-project/test-app_1.png"
+import testProject2 from "../assets/projects/test-project/test-app_2.png"
+import testProject3 from "../assets/projects/test-project/test-app_3.png"
 
 type Skill =
   | "React"
@@ -29,9 +32,10 @@ interface IProject {
   skills: Skill[]
   shortDescription: string[]
   description: string[]
-  thumbnail: string
-  screenshots: string[]
+  thumbnail: { url: string; alt: string }
+  screenshots: { url: string; alt: string }[]
   githubLink?: string
+  liveLink?: string
 }
 
 const projects: IProject[] = [
@@ -48,8 +52,17 @@ const projects: IProject[] = [
       "paragraph 2",
       "paragraph 3",
     ],
-    thumbnail: reactIcon,
-    screenshots: [reactIcon],
+    thumbnail: {
+      url: testProject1,
+      alt: "Thumbnail screenshot for this project",
+    },
+    screenshots: [
+      { url: testProject1, alt: "this is a screenshot" },
+      { url: testProject2, alt: "this is a screenshot" },
+      { url: testProject3, alt: "this is a screenshot" },
+    ],
+    githubLink:
+      "https://github.com/Nick-Jackson-dev/file-storage-reactjs-project",
   },
   {
     name: "B2B software",
@@ -64,8 +77,10 @@ const projects: IProject[] = [
       "paragraph 2",
       "paragraph 3",
     ],
-    thumbnail: reactIcon,
-    screenshots: [reactIcon],
+    thumbnail: { url: reactIcon, alt: "thumbnail" },
+    screenshots: [
+      { url: reactIcon, alt: "this is a screenshot of the second project" },
+    ],
   },
 ]
 

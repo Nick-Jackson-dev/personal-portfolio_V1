@@ -3,6 +3,9 @@
   margin-top: 1rem;
   border-top: 2px darkgrey solid;
 }
+.icon-list-container.no-border {
+  border: none;
+}
 
 .icon-list-title {
   font-weight: 500;
