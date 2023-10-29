@@ -14,12 +14,9 @@ import CopyIcon from "../assets/basicIcons/copy-solid.svg"
 import { CSSProperties, ChangeEvent, FormEvent, useState } from "react"
 import useWindowSize from "../hooks/useWindowSize"
 import Icon from "../components/basicComponents/Icon"
-import FormWrapper from "../components/basicFormComponents/FormWrapper"
 import { BasicFormBody } from "../components/basicFormComponents"
 
 export default function Contact() {
-  //   TODO: break up these sections into components below and insert sop that they can be re-used when the single column layout is made
-
   const { width } = useWindowSize()
   //if Screen is 880px or larger display 2 columns
   if (width >= 840) {
@@ -67,10 +64,7 @@ export default function Contact() {
   //if it is a small screen (less than 880 px) - display single column
   return (
     <main className="contact-page">
-      <SingleColumn
-        className="page-wrapper"
-        containerStyles={{ border: "2px solid black" }}
-      >
+      <SingleColumn className="page-wrapper">
         <Heading />
 
         <EmailSection styles={{ textAlign: "center" }} />

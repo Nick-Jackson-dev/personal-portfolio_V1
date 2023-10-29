@@ -6,6 +6,7 @@ import SingleColumn from "../../layouts/SingleColumn"
 import { Skill, projects } from "../../data/projects"
 import ImageSlider from "../../components/ImageSlider"
 import SkillIconList from "../../components/SkillIconList"
+import { ReactNode } from "react"
 
 export default function ProjectPage() {
   const navigate = useNavigate()
@@ -46,15 +47,13 @@ export default function ProjectPage() {
 }
 
 type ProjectDescriptionProps = {
-  description: string[]
+  description: ReactNode[]
 }
 const ProjectDescription = ({ description }: ProjectDescriptionProps) => {
   return (
     <section className="project-description">
       <h2>What is it?</h2>
-      {description.map((para) => (
-        <p key={para}>{para}</p>
-      ))}
+      {description.map((node) => node)}
     </section>
   )
 }

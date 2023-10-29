@@ -1,3 +1,4 @@
+/* Sttyles for Projects page where there is a list of projects */
 .project-list-item {
   box-sizing: border-box;
   margin-top: 1.5rem;
@@ -61,29 +62,6 @@
   margin-top: 0.5rem;
 }
 
-/* ProjectPage specific classes */
-.project-page .page-title {
-  margin-bottom: 0;
-}
-.project-page-back-button {
-  text-align: left;
-  margin-top: 0;
-}
-.project-information {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  border-top: 2px lightgrey solid;
-}
-.project-description {
-  flex-grow: 2;
-}
-.skills-and-links {
-  display: grid;
-  grid-auto-flow: row;
-  flex-shrink: 2;
-}
-
 /* Screens less than 860px wide */
 @media only screen and (max-width: 860px) {
   .project-list-item,
@@ -104,11 +82,51 @@
   .project-list-item .project-skills {
     border-bottom: none;
   }
+}
 
+/* ProjectPage specific classes */
+.project-page .page-title {
+  margin-bottom: 0;
+}
+.project-page-back-button {
+  text-align: left;
+  margin-top: 0;
+}
+.project-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 1em;
+  border-top: 2px lightgrey solid;
+}
+.project-description {
+  margin-right: 1em;
+  padding-right: 1em;
+  border-right: 1px solid grey;
+}
+.skills-and-links {
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Screens less than 860px wide */
+@media only screen and (max-width: 860px) {
   .project-information {
     flex-direction: column-reverse;
   }
+  .project-description {
+    border-right: none;
+  }
   .skills-and-links {
-    grid-auto-flow: column;
+    flex-direction: row;
+  }
+  .project-skills {
+    margin-right: 1em;
+    padding-right: 1em;
+    border-right: 1px solid grey;
+  }
+  .project-links {
+    min-width: 170px;
   }
 }
