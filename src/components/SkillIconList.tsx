@@ -6,6 +6,8 @@ import { Skill, allSkills } from "../data/projects"
 //icons
 //icons
 import {
+  HTMLIcon,
+  CSSIcon,
   reactIcon,
   bootstrapIcon,
   gitIcon,
@@ -14,12 +16,15 @@ import {
   jsIcon,
   tsIcon,
   vuejsIcon,
+  viteIcon,
 } from "../assets/skillIcons/index"
 
 //styles
 import "./IconList.css"
 
 const iconPaths = {
+  HTML: HTMLIcon,
+  CSS: CSSIcon,
   React: reactIcon,
   Vue: vuejsIcon,
   Bootstrap: bootstrapIcon,
@@ -28,6 +33,7 @@ const iconPaths = {
   Firebase: firebaseIcon,
   Git: gitIcon,
   Github: githubIcon,
+  Vite: viteIcon,
   All: reactIcon, //I need this hear but don't know why
 } as const
 
