@@ -90,7 +90,10 @@ const SkillsAndLink = ({
         )}
         {liveLink && (
           <p>
-            Check out the project <a href={liveLink}>live</a>
+            Check out the project{" "}
+            <a href={liveLink} target="_blank">
+              live
+            </a>
           </p>
         )}
       </div>
