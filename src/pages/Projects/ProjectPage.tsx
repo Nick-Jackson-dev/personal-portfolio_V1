@@ -24,7 +24,7 @@ export default function ProjectPage() {
 
   return (
     <main className="project-page">
-      <h1 className="page-title">{project.name}</h1>
+      <h1 className="project-title">{project.name}</h1>
       <SingleColumn textAlign="left" className="page-wrapper">
         <p className="project-page-back-button">
           <Link to="/projects">{"<"} back to projects</Link>
@@ -79,24 +79,24 @@ const SkillsAndLink = ({
           border={false}
         />
       </div>
-      <div className="project-links">
+      <ul className="project-links">
         {githubLink && (
-          <p>
+          <li>
             View on{" "}
             <a href={githubLink} target="_blank">
               GitHub
             </a>
-          </p>
+          </li>
         )}
         {liveLink && (
-          <p>
+          <li>
             Check out the project{" "}
             <a href={liveLink} target="_blank">
               live
             </a>
-          </p>
+          </li>
         )}
-      </div>
+      </ul>
     </section>
   )
 }

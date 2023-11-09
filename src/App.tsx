@@ -5,7 +5,6 @@ import MainNavbar from "./components/MainNavbar"
 
 //pages
 import Home from "./pages/Home"
-import About from "./pages/About"
 import Contact from "./pages/Contact"
 import { ProjectsPage, ProjectPage } from "./pages/Projects/index"
 
@@ -20,7 +19,7 @@ function App() {
         <MainNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:projectId" element={<ProjectPage />} />

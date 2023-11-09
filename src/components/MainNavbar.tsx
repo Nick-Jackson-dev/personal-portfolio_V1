@@ -19,18 +19,6 @@ export default function MainNavbar() {
       </div>
       <div className={styles["link-container"]}>
         <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive
-              ? `${styles.active} ${styles["main-link"]}`
-              : styles["main-link"]
-          }
-        >
-          About
-        </NavLink>
-      </div>
-      <div className={styles["link-container"]}>
-        <NavLink
           to="/projects"
           className={({ isActive }) =>
             isActive

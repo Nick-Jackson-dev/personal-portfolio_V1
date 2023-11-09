@@ -4,7 +4,6 @@ import {
   ReactElement,
   ReactNode,
 } from "react"
-import { JsxElement } from "typescript"
 
 type TwoColumnProps = {
   leftSideJSX: ReactNode

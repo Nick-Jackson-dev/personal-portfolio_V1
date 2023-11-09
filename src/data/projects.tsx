@@ -3,6 +3,34 @@ import { reactIcon } from "../assets/skillIcons"
 import testProject1 from "../assets/projects/test-project/test-app_1.png"
 import testProject2 from "../assets/projects/test-project/test-app_2.png"
 import testProject3 from "../assets/projects/test-project/test-app_3.png"
+import {
+  elabTrackerNoficationPage,
+  elabTrackerBillingControl,
+  elabTrackerCompanySettings,
+  elabTrackerDocumentStorage,
+  elabTrackerEquipmentTracker,
+  elabTrackerMessaging,
+  documentStorageRootFolder,
+  documentStorageSubfolder,
+  documentStorageAddingDocumentToSubfolder,
+  documentStorageMoveDocument,
+  messagingDashboard,
+  messagingMessage,
+  messagingMobile,
+  messagingMultiParticipants,
+  messagingCreatingMessage,
+  constructionQCOfficeDashboard,
+  constructionQCProjectDashboard,
+  constructionQCAddingSpecs,
+  constructionQCScheduling,
+  constructionQCReportingAsphalt,
+  coonstructionQCMultiOfficeUser,
+  matchThreeHome,
+  matchThreeTimeTrial,
+  matchThreeSpecialLevel,
+  matchThreeAbility,
+  matchThreeWinScreen,
+} from "../assets/projects/project-screenshots"
 import { ReactNode } from "react"
 
 type Skill =
@@ -99,13 +127,34 @@ const projects: IProject[] = [
       </p>,
     ],
     thumbnail: {
-      url: testProject1,
+      url: elabTrackerEquipmentTracker,
       alt: "Thumbnail screenshot for the Production Level Laboratory Tracking Service Project",
     },
     screenshots: [
-      { url: testProject1, alt: "this is a screenshot of the project" },
-      { url: testProject2, alt: "this is a screenshot of the project" },
-      { url: testProject3, alt: "this is a screenshot of the project" },
+      {
+        url: elabTrackerEquipmentTracker,
+        alt: "Screenshot thumbnail of e-lab Tracker project",
+      },
+      {
+        url: elabTrackerDocumentStorage,
+        alt: "Screenshot of e-lab Tracker project - equipment tracking feature",
+      },
+      {
+        url: elabTrackerNoficationPage,
+        alt: "Screenshot of e-lab Tracker project - notifications page user dashboard",
+      },
+      {
+        url: elabTrackerBillingControl,
+        alt: "Screenshot of e-lab Tracker project - control of billed units",
+      },
+      {
+        url: elabTrackerCompanySettings,
+        alt: "Screenshot of e-lab Tracker project - company settings control page",
+      },
+      {
+        url: elabTrackerMessaging,
+        alt: "Screenshot of e-lab Tracker project - messaging",
+      },
     ],
     githubLink: "https://github.com/Nick-Jackson-dev/e-lab-tracker",
     liveLink: "https://elabtracker.com",
@@ -150,13 +199,26 @@ const projects: IProject[] = [
       </p>,
     ],
     thumbnail: {
-      url: testProject1,
+      url: documentStorageRootFolder,
       alt: "Thumbnail screenshot for the Document Storage Project",
     },
     screenshots: [
-      { url: testProject1, alt: "this is a screenshot" },
-      { url: testProject2, alt: "this is a screenshot" },
-      { url: testProject3, alt: "this is a screenshot" },
+      {
+        url: documentStorageRootFolder,
+        alt: "Screenshot of the Document Storage Project - view from root folder",
+      },
+      {
+        url: documentStorageSubfolder,
+        alt: "Screenshot of the Document Storage Project - view of a subfolder",
+      },
+      {
+        url: documentStorageAddingDocumentToSubfolder,
+        alt: "Screenshot of the Document Storage Project - adding a document to a subfolder",
+      },
+      {
+        url: documentStorageMoveDocument,
+        alt: "Screenshot of the Document Storage Project - moving a document to a different folder",
+      },
     ],
     githubLink:
       "https://github.com/Nick-Jackson-dev/file-storage-reactjs-project",
@@ -213,11 +275,30 @@ const projects: IProject[] = [
       </p>,
     ],
     thumbnail: {
-      url: testProject1,
-      alt: "Thumbnail screenshot for the Production Level Laboratory Tracking Service Project",
+      url: messagingDashboard,
+      alt: "Thumbnail screenshot for the Messaging App",
     },
     screenshots: [
-      { url: reactIcon, alt: "this is a screenshot of the second project" },
+      {
+        url: messagingDashboard,
+        alt: "Screenshot for the Messaging App - User Dashboard",
+      },
+      {
+        url: messagingMessage,
+        alt: "Screenshot for the Messaging App - looking at a message UI",
+      },
+      {
+        url: messagingMobile,
+        alt: "Screenshot for the Messaging App user dashboard from a mobile screen size",
+      },
+      {
+        url: messagingMultiParticipants,
+        alt: "Screenshot for the Messaging App - looking at a group message",
+      },
+      {
+        url: messagingCreatingMessage,
+        alt: "Screenshot for the Messaging App - creating a message",
+      },
     ],
     githubLink:
       "https://github.com/Nick-Jackson-dev/reactJS-messagingApp-jsonServer",
@@ -240,8 +321,10 @@ const projects: IProject[] = [
         be the business representative during the development.
       </p>,
       <p>
-        This website used Firebase Firestore, Storage, AAuthentication, and
-        Hosting. The front end was mreated with VueJS.
+        This website used Firebase Firestore, Storage, Authentication, and
+        Hosting. The front end was created with VueJS. This was years ago, and
+        in revisiting, I recognize that the UI is not great; I would re-work
+        that if I were to pick this one back up.
       </p>,
       <p>
         After taking a Udemy course for Vue, I was convinced it was the best
@@ -253,18 +336,64 @@ const projects: IProject[] = [
       <p>
         Not all of the planned functionality for this website was developed by
         the time I abandoned it. I don't think I will revisit this one either.
+        But currently clients can be added, Users can be signed up.
+        Authenticated Users can be assigned to multiple clients (offices) that
+        may be multi-office or subcontracted companies. Specifications can be
+        defined at an office level. Projects can be registered to an office.
+        Specifications can be imported to a project from the office level or
+        defined at the project level. Work can be assigned and scheduled for a
+        project and results can be reported by the assisnged user. Users can see
+        specifications while reporting as well.
+      </p>,
+      <p>
+        Additional plans, at the time of development included more forms to be
+        built in to the system, for their to be client-defined forms for
+        reporting. as well as client defined specifications. For multiple
+        authors to be added to a report. To generate reports/deliverables based
+        on data collected. And much more.
+      </p>,
+      <p>
+        Like I mentioned above, the UI is ugly, but I do believe the
+        non-relational database structure is there for the most part. There is a
+        live project link associated with the project,. If you want to explore
+        use "nick@test.com" with password "test1234"
       </p>,
     ],
     thumbnail: {
-      url: testProject1,
-      alt: "Thumbnail screenshot for the Production Level Laboratory Tracking Service Project",
+      url: constructionQCReportingAsphalt,
+      alt: "Thumbnail screenshot for the Construction Quality Control Reporting Project",
     },
     screenshots: [
-      { url: reactIcon, alt: "this is a screenshot of the second project" },
+      {
+        url: constructionQCOfficeDashboard,
+        alt: "Screenshot for the Construction Quality Control Reporting Project - The office Dashboard",
+      },
+      {
+        url: constructionQCProjectDashboard,
+        alt: "Screenshot for the Construction Quality Control Reporting Project - A Project Dashboard",
+      },
+      {
+        url: constructionQCAddingSpecs,
+        alt: "Screenshot for the Construction Quality Control Reporting Project - Adding a set of specifications to a project",
+      },
+      {
+        url: constructionQCScheduling,
+        alt: "Screenshot for the Construction Quality Control Reporting Project - Scheduling Work on a project",
+      },
+      {
+        url: constructionQCReportingAsphalt,
+        alt: "Screenshot for the Construction Quality Control Reporting Project - Reporting asphalt testing results",
+      },
+      {
+        url: coonstructionQCMultiOfficeUser,
+        alt: "Screenshot for the Construction Quality Control Reporting Project - Showing that Users can access multiple offices and their projects.",
+      },
     ],
     githubLink:
       "https://github.com/Nick-Jackson-dev/construction-qc-mobile/tree/master",
+    liveLink: "https://ethel-test.web.app/signin",
   },
+
   {
     name: "Match 3 Game - Space Y: Rogue",
     id: "4",
@@ -318,12 +447,32 @@ const projects: IProject[] = [
       </p>,
     ],
     thumbnail: {
-      url: testProject1,
-      alt: "Thumbnail screenshot for the Production Level Laboratory Tracking Service Project",
+      url: matchThreeHome,
+      alt: "Thumbnail screenshot for the Match 3 Game Project",
     },
     screenshots: [
-      { url: reactIcon, alt: "this is a screenshot of the second project" },
+      {
+        url: matchThreeHome,
+        alt: "Screenshot for the Match 3 Game Project - the home screen to select a level type",
+      },
+      {
+        url: matchThreeTimeTrial,
+        alt: "Screenshot for the Match 3 Game Project - a normal level, time trial level",
+      },
+      {
+        url: matchThreeSpecialLevel,
+        alt: "Screenshot for the Match 3 Game Project - a special level with power ups and obstacles",
+      },
+      {
+        url: matchThreeAbility,
+        alt: "Screenshot for the Match 3 Game Project - Activating  a special ability that targets all of one tile type",
+      },
+      {
+        url: matchThreeWinScreen,
+        alt: "Screenshot for the Match 3 Game Project - The win screen if you beat a level",
+      },
     ],
+    githubLink: "https://github.com/Nick-Jackson-dev/Match3BasicGrid",
   },
 ]
 

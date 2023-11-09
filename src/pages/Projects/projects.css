@@ -85,12 +85,14 @@
 }
 
 /* ProjectPage specific classes */
-.project-page .page-title {
+.project-title {
   margin-bottom: 0;
+  margin-top: 2rem;
 }
 .project-page-back-button {
   text-align: left;
   margin-top: 0;
+  margin-bottom: 2rem;
 }
 .project-information {
   display: flex;
@@ -100,6 +102,7 @@
   border-top: 2px lightgrey solid;
 }
 .project-description {
+  text-align: justify;
   margin-right: 1em;
   padding-right: 1em;
   border-right: 1px solid grey;
@@ -108,6 +111,9 @@
   min-width: 250px;
   display: flex;
   flex-direction: column;
+}
+.project-links > li {
+  margin-top: 1rem;
 }
 
 /* Screens less than 860px wide */

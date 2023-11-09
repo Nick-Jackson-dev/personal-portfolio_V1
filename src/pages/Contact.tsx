@@ -30,12 +30,17 @@ export default function Contact() {
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center",
                 }}
               >
                 <Heading />
 
-                <p style={{ width: "5rem", paddingLeft: "3em" }}>
+                <p
+                  style={{
+                    width: "5rem",
+                    paddingLeft: "3em",
+                    marginTop: "4rem",
+                  }}
+                >
                   <Icon src={ArrowRight} />
                 </p>
               </div>
