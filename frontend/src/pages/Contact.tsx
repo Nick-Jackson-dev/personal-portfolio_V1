@@ -163,6 +163,7 @@ const ContactForm = () => {
     }))
   }
 
+  // FIXME: axios is throwing a network error not much of a description on it and no clue what is causing it
   const handleSubmit: (e: FormEvent) => void = async (e) => {
     e.preventDefault()
 
