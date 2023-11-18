@@ -138,12 +138,14 @@ const SocialSection = () => {
 interface IContactFormData {
   name: string
   email: string
+  company: string
   message: string
 }
 
 const INITIAL_FORM_DATA: IContactFormData = {
   name: "",
   email: "",
+  company: "",
   message: "",
 }
 
@@ -160,8 +162,30 @@ const ContactForm = () => {
     }))
   }
 
-  const handleSubmit: (e: FormEvent) => void = (e) => {
+  const handleSubmit: (e: FormEvent) => void = async (e) => {
     e.preventDefault()
+
+    try {
+      const response = await fetch("http://localhost:8000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include", // Ensure credentials are included for cross-origin requests
+      })
+
+      if (response.ok) {
+        console.log("Email sent successfully")
+        // Add any success handling code here
+      } else {
+        console.error("Error sending email:", await response.text())
+        // Add any error handling code here
+      }
+    } catch (error) {
+      console.error("Error:", error)
+      // Add any error handling code here
+    }
 
     console.log(formData)
   }
@@ -188,6 +212,15 @@ const ContactForm = () => {
             onChange: updateFields,
             required: true,
             placeholder: "email@email.com",
+          },
+          {
+            type: "text",
+            label: "company",
+            name: "company",
+            value: formData.company,
+            onChange: updateFields,
+            required: true,
+            placeholder: "",
           },
         ]}
       >
