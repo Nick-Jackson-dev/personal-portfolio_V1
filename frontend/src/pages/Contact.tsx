@@ -15,7 +15,6 @@ import { CSSProperties, ChangeEvent, FormEvent, useState } from "react"
 import useWindowSize from "../hooks/useWindowSize"
 import Icon from "../components/basicComponents/Icon"
 import { BasicFormBody } from "../components/basicFormComponents"
-import axios from "axios"
 
 export default function Contact() {
   const { width } = useWindowSize()
@@ -163,16 +162,29 @@ const ContactForm = () => {
     }))
   }
 
-  // FIXME: axios is throwing a network error not much of a description on it and no clue what is causing it
   const handleSubmit: (e: FormEvent) => void = async (e) => {
     e.preventDefault()
 
     try {
-      await axios.post("http://localhost:465/send_mail", {
-        ...formData,
+      const response = await fetch("http://localhost:8000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include", // Ensure credentials are included for cross-origin requests
       })
+
+      if (response.ok) {
+        console.log("Email sent successfully")
+        // Add any success handling code here
+      } else {
+        console.error("Error sending email:", await response.text())
+        // Add any error handling code here
+      }
     } catch (error) {
-      console.error(error)
+      console.error("Error:", error)
+      // Add any error handling code here
     }
 
     console.log(formData)
