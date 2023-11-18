@@ -15,6 +15,7 @@ import { CSSProperties, ChangeEvent, FormEvent, useState } from "react"
 import useWindowSize from "../hooks/useWindowSize"
 import Icon from "../components/basicComponents/Icon"
 import { BasicFormBody } from "../components/basicFormComponents"
+import axios from "axios"
 
 export default function Contact() {
   const { width } = useWindowSize()
@@ -138,12 +139,14 @@ const SocialSection = () => {
 interface IContactFormData {
   name: string
   email: string
+  company: string
   message: string
 }
 
 const INITIAL_FORM_DATA: IContactFormData = {
   name: "",
   email: "",
+  company: "",
   message: "",
 }
 
@@ -160,8 +163,16 @@ const ContactForm = () => {
     }))
   }
 
-  const handleSubmit: (e: FormEvent) => void = (e) => {
+  const handleSubmit: (e: FormEvent) => void = async (e) => {
     e.preventDefault()
+
+    try {
+      await axios.post("http://localhost:465/send_mail", {
+        ...formData,
+      })
+    } catch (error) {
+      console.error(error)
+    }
 
     console.log(formData)
   }
@@ -188,6 +199,15 @@ const ContactForm = () => {
             onChange: updateFields,
             required: true,
             placeholder: "email@email.com",
+          },
+          {
+            type: "text",
+            label: "company",
+            name: "company",
+            value: formData.company,
+            onChange: updateFields,
+            required: true,
+            placeholder: "",
           },
         ]}
       >
