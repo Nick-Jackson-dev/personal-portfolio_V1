@@ -51,11 +51,11 @@ export default function Contact() {
 
               <SocialSection />
 
-              <p style={{ fontWeight: "bold", fontSize: "2em", margin: "0" }}>
+              {/* <p style={{ fontWeight: "bold", fontSize: "2em", margin: "0" }}>
                 OR
-              </p>
+              </p> */}
 
-              <EmailSection styles={{ textAlign: "left" }} />
+              {/* <EmailSection styles={{ textAlign: "left" }} /> */}
             </>
           }
           rightSideJSX={<ContactForm />}
@@ -72,7 +72,7 @@ export default function Contact() {
       <SingleColumn className="page-wrapper">
         <Heading />
 
-        <EmailSection styles={{ textAlign: "center" }} />
+        {/* <EmailSection styles={{ textAlign: "center" }} /> */}
 
         <p style={{ fontWeight: "bold", fontSize: "2em", margin: "0" }}>OR</p>
 
@@ -106,25 +106,25 @@ const Heading = () => {
 type EmailSectionProps = {
   styles?: CSSProperties
 }
-const EmailSection = ({ styles }: EmailSectionProps) => {
-  return (
-    <section style={styles}>
-      <p>
-        You can eMail me at{" "}
-        <a href="mailto:nickyj.517@gmail.com">nickyj.517@gmail.com</a>
-        <CopyToClipboard text="nickyj.517@gmail.com">
-          <Icon
-            src={CopyIcon}
-            size="xs"
-            shape="square"
-            clickable
-            styles={{ marginLeft: "0.25rem" }}
-          />
-        </CopyToClipboard>
-      </p>
-    </section>
-  )
-}
+// const EmailSection = ({ styles }: EmailSectionProps) => {
+//   return (
+//     <section style={styles}>
+//       <p>
+//         You can eMail me at{" "}
+//         <a href="mailto:nickyj.517@gmail.com">nickyj.517@gmail.com</a>
+//         <CopyToClipboard text="nickyj.517@gmail.com">
+//           <Icon
+//             src={CopyIcon}
+//             size="xs"
+//             shape="square"
+//             clickable
+//             styles={{ marginLeft: "0.25rem" }}
+//           />
+//         </CopyToClipboard>
+//       </p>
+//     </section>
+//   )
+// }
 
 const SocialSection = () => {
   return (
@@ -151,6 +151,7 @@ const INITIAL_FORM_DATA: IContactFormData = {
 
 const ContactForm = () => {
   const [formData, setFormData] = useState<IContactFormData>(INITIAL_FORM_DATA)
+  const [isPending, setIsPending] = useState<boolean>(false)
 
   const updateFields: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -162,8 +163,13 @@ const ContactForm = () => {
     }))
   }
 
+  const clearForm = () => {
+    setFormData(INITIAL_FORM_DATA)
+  }
+
   const handleSubmit: (e: FormEvent) => void = async (e) => {
     e.preventDefault()
+    setIsPending(true)
 
     try {
       const response = await fetch("http://localhost:8000/send-email", {
@@ -178,16 +184,21 @@ const ContactForm = () => {
       if (response.ok) {
         console.log("Email sent successfully")
         // Add any success handling code here
+        setIsPending(false)
+        alert("Message sent. Thank you for reaching out!")
       } else {
         console.error("Error sending email:", await response.text())
         // Add any error handling code here
+        setIsPending(false)
+        alert(`Message not sent: ${await response.text()}`)
       }
     } catch (error) {
       console.error("Error:", error)
       // Add any error handling code here
+      setIsPending(false)
+      alert(`Message not sent: ${error}`)
     }
-
-    console.log(formData)
+    clearForm()
   }
 
   return (
@@ -237,7 +248,7 @@ const ContactForm = () => {
           rows={4}
         />
       </BasicFormBody>
-      <button>Send</button>
+      <button disabled={isPending}>{!isPending ? "Send" : "Sending..."}</button>
     </form>
   )
 }
