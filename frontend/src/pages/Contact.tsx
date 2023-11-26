@@ -178,11 +178,12 @@ const ContactForm = () => {
     //firebase functions
     try {
       await sentMailToMe(formData)
+      setIsPending(false)
     } catch (err) {
       console.error("Error when trying via firebase:", err)
       // Add any error handling code here
       setIsPending(false)
-      alert(`Message not sent: ${error}`)
+      alert(`Message not sent: ${err}`)
     }
     clearForm()
   }
