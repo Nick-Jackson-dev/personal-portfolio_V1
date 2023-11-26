@@ -40,7 +40,7 @@ app.post("/send-email", async (req, res) => {
   const mailOptions = {
     from: email,
     to: process.env.CONTACT_FORM_ADDRESSEE,
-    subject: `!!!Contact form entry from ${name} - with ${company}`,
+    subject: `!!!someone is reaching out from your portfolio${name} - with ${company}`,
     text: message,
     html: `<div className="email" style="
         border: 1px solid black;
@@ -49,9 +49,12 @@ app.post("/send-email", async (req, res) => {
         line-height: 2;
         font-size: 20px; 
         ">
-        <h2>Here is your email!</h2>
+        <h2>Message Delivered from your protolio contact form</h2>
+        <p><strong>The contact said their email is</strong>: ${email}</p>
+        <p><strong>The contact said their name is</strong>: ${name}</p>
+        <p><strong>they say they are working at</strong>: ${company}</p>
+        <p><strong>There message is</strong>:</p>
         <p>${message}</p>
-    
          </div>`,
   }
 

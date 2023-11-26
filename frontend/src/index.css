@@ -29,3 +29,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+button[disabled],
+.button[disabled] {
+  cursor: not-allowed;
+  background-color: grey;
+}
