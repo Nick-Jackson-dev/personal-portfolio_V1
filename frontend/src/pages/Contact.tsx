@@ -15,6 +15,8 @@ import { CSSProperties, ChangeEvent, FormEvent, useState } from "react"
 import useWindowSize from "../hooks/useWindowSize"
 import Icon from "../components/basicComponents/Icon"
 import { BasicFormBody } from "../components/basicFormComponents"
+import { functions } from "../firebase/config"
+import { httpsCallable } from "firebase/functions"
 
 export default function Contact() {
   const { width } = useWindowSize()
@@ -152,6 +154,8 @@ const INITIAL_FORM_DATA: IContactFormData = {
 const ContactForm = () => {
   const [formData, setFormData] = useState<IContactFormData>(INITIAL_FORM_DATA)
 
+  const sentMailToMe = httpsCallable(functions, "sendMailToMe")
+
   const updateFields: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void = (e) => {
@@ -165,29 +169,38 @@ const ContactForm = () => {
   const handleSubmit: (e: FormEvent) => void = async (e) => {
     e.preventDefault()
 
+    //firebase functions
     try {
-      const response = await fetch("http://localhost:8000/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include", // Ensure credentials are included for cross-origin requests
-      })
-
-      if (response.ok) {
-        console.log("Email sent successfully")
-        // Add any success handling code here
-      } else {
-        console.error("Error sending email:", await response.text())
-        // Add any error handling code here
-      }
-    } catch (error) {
-      console.error("Error:", error)
+      await sentMailToMe(formData)
+    } catch (err) {
+      console.error("Error when trying via firebase:", err)
       // Add any error handling code here
     }
 
-    console.log(formData)
+    //local node server:
+    // try {
+    //   const response = await fetch("http://localhost:8000/send-email", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formData),
+    //     credentials: "include", // Ensure credentials are included for cross-origin requests
+    //   })
+
+    //   if (response.ok) {
+    //     console.log("Email sent successfully")
+    //     // Add any success handling code here
+    //   } else {
+    //     console.error("Error sending email:", await response.text())
+    //     // Add any error handling code here
+    //   }
+    // } catch (error) {
+    //   console.error("Error when trying via local node:", error)
+    //   // Add any error handling code here
+    // }
+
+    // console.log(formData)
   }
 
   return (
