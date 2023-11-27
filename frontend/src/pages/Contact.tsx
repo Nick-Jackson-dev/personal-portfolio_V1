@@ -1,6 +1,5 @@
 //components
 import SocialIconList from "../components/SocialIconList"
-import CopyToClipboard from "react-copy-to-clipboard"
 //layout
 import TwoColumn from "../layouts/TwoColumn"
 import SingleColumn from "../layouts/SingleColumn"
@@ -8,7 +7,6 @@ import SingleColumn from "../layouts/SingleColumn"
 //icons
 import ArrowDown from "../assets/basicIcons/arrow-down-solid.svg"
 import ArrowRight from "../assets/basicIcons/arrow-right-solid.svg"
-import CopyIcon from "../assets/basicIcons/copy-solid.svg"
 
 //hooks
 import { CSSProperties, ChangeEvent, FormEvent, useState } from "react"
@@ -17,6 +15,8 @@ import Icon from "../components/basicComponents/Icon"
 import { BasicFormBody } from "../components/basicFormComponents"
 import { functions } from "../firebase/config"
 import { httpsCallable } from "firebase/functions"
+
+import ReCAPTCHA, { ReCAPTCHAProps } from "react-google-recaptcha"
 
 export default function Contact() {
   const { width } = useWindowSize()
@@ -154,7 +154,9 @@ const INITIAL_FORM_DATA: IContactFormData = {
 const ContactForm = () => {
   const [formData, setFormData] = useState<IContactFormData>(INITIAL_FORM_DATA)
   const [isPending, setIsPending] = useState<boolean>(false)
+  const [captchaIsDone, setCaptchaIsDone] = useState<boolean>(false)
 
+  const reCAPTCHAKey = "6LdTdx0pAAAAADqMb1UADQV1Up66jdzZcmY17gEO"
   const sentMailToMe = httpsCallable(functions, "sendMailToMe")
 
   const updateFields: (
@@ -169,10 +171,12 @@ const ContactForm = () => {
 
   const clearForm = () => {
     setFormData(INITIAL_FORM_DATA)
+    setCaptchaIsDone(false)
   }
 
   const handleSubmit: (e: FormEvent) => void = async (e) => {
     e.preventDefault()
+    if (!captchaIsDone) return console.log("no captcha")
     setIsPending(true)
 
     //firebase functions
@@ -186,6 +190,11 @@ const ContactForm = () => {
       alert(`Message not sent: ${err}`)
     }
     clearForm()
+  }
+
+  const onCAPTCHAChange = (value: string | null) => {
+    console.log("reCAPTCHA value: ", value)
+    if (value) setCaptchaIsDone(true)
   }
 
   return (
@@ -235,6 +244,10 @@ const ContactForm = () => {
           rows={4}
         />
       </BasicFormBody>
+      <ReCAPTCHA
+        sitekey={reCAPTCHAKey}
+        onChange={(value) => onCAPTCHAChange(value)}
+      />
       <button disabled={isPending}>{!isPending ? "Send" : "Sending..."}</button>
     </form>
   )
